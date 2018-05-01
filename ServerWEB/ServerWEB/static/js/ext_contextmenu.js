@@ -20,6 +20,7 @@ function StopCM(){
 document.addEventListener("click", StopCM);
 window.addEventListener("resize", StopCM);
 window.addEventListener("scroll", StopCM);
+document.addEventListener("blur", StopCM);
 
 async function cmActionPrint(){
 	var promise_chain = new Array();
@@ -42,4 +43,9 @@ async function cmActionPrint(){
 
 function cmActionReload(){
 	location.reload(true);
+}
+
+function cmActionReportBug(){
+	location.hash = "Settings";
+	document.getElementById("PS_group_bug").scrollIntoView({behaviour:"smooth"});
 }

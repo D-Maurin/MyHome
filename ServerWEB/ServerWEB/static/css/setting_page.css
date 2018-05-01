@@ -20,6 +20,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	align-items: center;
 }
 
 .PS_passwd_input
@@ -40,8 +41,6 @@
 	border: solid rgb(230,230,230) 1px;
 	border-radius: 5px;
 	padding: 5px;
-	-webkit-user-select: text;
-	user-select: text;
 	flex:1;
 	margin: 5px;
 	cursor: pointer;
@@ -69,4 +68,37 @@
 .PS_notify[ntype="error"]
 {
 	background: orangered;
+}
+
+#PS_bugdesc
+{
+	resize: vertical;
+	border: solid rgb(230,230,230) 1px;
+	border-radius: 5px;
+	border-bottom-right-radius: 2px;
+	padding: 5px;
+	-webkit-user-select: text;
+	user-select: text;
+	flex:1;
+	margin: 5px;
+	font-family: myfont;
+	box-sizing: border-box;
+	min-height: 40px;
+}
+
+#PS_sendbug
+{
+	border: solid rgb(230,230,230) 1px;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	font-family: myfont;
+	color: rgb(100, 100, 100);
+	background-image: url(/static/img/send.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }

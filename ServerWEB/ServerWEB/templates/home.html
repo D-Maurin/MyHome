@@ -122,14 +122,16 @@
 						<input id="PS_passwdsave" type="submit" value="Changer"/>
 					</form>
 				</div>
-				<div class="PS_group">
+				<div class="PS_group" id="PS_group_bug">
 					<div class="PS_head">
 						Rapporter un bug
 					</div>
-					<div class="PS_notify" ntype="error" nrun="false" id="PS_notify_passwd">
+					<div class="PS_notify" ntype="error" nrun="false" id="PS_notify_bug">
 
 					</div>
-					<form class="PS_core" onsubmit="ChangePasswd(this); return false">
+					<form class="PS_core" onsubmit="ReportBug(this); return false">
+						<textarea cols="1" name="bugdescription" id="PS_bugdesc"></textarea>
+						<input id="PS_sendbug" type="submit" value=""/>
 					</form>
 				</div>
 			</div>
@@ -176,7 +178,7 @@
 				</div>
 			</div>
 			<div class="cm_item_ct" cmi_num="2">
-				<div class="cm_item" onclick=''>
+				<div class="cm_item" onclick='cmActionReportBug()'>
 				</div>
 			</div>
 			<div class="cm_item_ct" cmi_num="3">
