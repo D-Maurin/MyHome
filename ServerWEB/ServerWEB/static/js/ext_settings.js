@@ -44,3 +44,8 @@ function samePasswdCheck(form)
 		confirm_input.setCustomValidity("");
 	}
 }
+
+function ReportBug(form)
+{
+	
+}
