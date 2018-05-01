@@ -1,0 +1,303 @@
+#Page_Home
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#PH_rooms
+{
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.PH_room
+{
+	border-radius: 5px;
+	box-shadow: 0 0 4px lightgrey;
+	margin:10px;
+	transition: .2s;
+	left: 0px;
+	position: relative;
+	opacity: 0;
+	animation: opacity_transition 1s;
+	animation-fill-mode: forwards;
+}
+
+#PH_room_0
+{
+	opacity: 0;
+	animation: opacity_transition 1s;
+	animation-fill-mode: forwards;
+}
+
+.PH_room_name
+{
+	font-size: 1.1em;
+	border-radius: 5px 5px 0 0;
+	background: rgb(230,230,230);
+	overflow: hidden;
+	padding: 7px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.PH_edit_room
+{
+	background: url(/static/img/edit.svg);
+	width: 20px;
+	height:20px;
+	background-size: contain;
+	background-position: center;
+	vertical-align: sub;
+	cursor: pointer;
+	transition: transform .1s;
+}
+.PH_edit_room:active
+{
+	transform: scale(0.90);
+}
+
+
+
+.PH_room_values
+{
+	padding: 7px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.sensor_module, .regulator_module
+{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+.sm_title, .rm_title
+{
+	margin:5px;
+	flex:1;
+}
+
+.ext_temp_disp
+{
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	background:
+		radial-gradient(circle at 0 0,
+        rgb(255,200,0),
+        rgb(255,0,0) 70%);
+	text-align: center;
+	line-height: 60px;
+	color:white;
+	font-size: 1.3em;
+	margin:5px;
+	position: relative;
+	transition: background 5s;
+}
+.ext_temp_disp span:after{content:"°"}
+
+
+.rm_editor
+{
+	position: absolute;
+	top:0px;
+	left: 50px;
+	width: 20px;
+	height: 60px;
+}
+
+.rm_edit_more, .rm_edit_less
+{
+	position:absolute;
+	left:0;
+	filter: drop-shadow(0 0 6px white); 
+	cursor: pointer;
+	transition: transform .1s;
+}
+
+.rm_edit_more:active, .rm_edit_less:active
+{
+	transform: scale(0.92);
+}
+
+.rm_edit_more
+{
+	top:0;
+}
+.rm_edit_less
+{
+	bottom:0;
+}
+
+
+.PH_room_name_label:after
+{
+	content:"";
+	display: inline-block;
+	height: 17px;
+	width: 17px;
+	background: url(/static/img/history_bt.svg);
+	background-size: cover;
+	background-position: center;
+	vertical-align: sub;
+	margin: 0 10px 0 10px;
+	transition: transform 0.3s;
+}
+.PH_room_name_label:after, .PH_room_name_label
+{
+	cursor: pointer;
+}
+
+.PH_history_bt:not(:checked) ~ .PH_room_name > .PH_room_name_label:after
+{
+	transform: rotate(180deg);
+}
+
+.PH_room_history
+{
+	height: 100px;
+	transition: 0.3s;
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;
+}
+
+.PH_history_bt:not(:checked) ~ .PH_room_history
+{
+	height: 0px;
+}
+
+.history_min, .history_max
+{
+	margin: 5px;
+}
+
+.history_extremum
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-right: 5px;
+}
+
+.history_min:before
+{
+	content:"Min : ";
+}
+.history_max:before
+{
+	content:"Max : ";
+}
+
+.history_min:after, .history_max:after
+{
+	content:"°";
+}
+
+.history_view
+{
+	flex: 1;
+}
+/*----------------------*/
+
+.etd_warning
+{
+	position: absolute;
+	bottom: 0px;
+	display: none;
+}
+
+.sensor_module[warn_uptd="true"] > .ext_temp_disp > .sm_warning
+{
+	display: block;
+	right: -10px;
+}
+
+.regulator_module[warn_uptd="true"]:not([warn_has_reg="true"]) > .ext_temp_disp > .rm_warning
+{
+	display: block;
+	left: -10px;
+}
+
+.regulator_module[warn_has_reg="true"] > .ext_temp_disp > .rm_warning
+{
+	display: block;
+	right: -10px;
+}
+
+.regulator_module[warn_has_reg="true"] > .ext_temp_disp > .rm_editor
+{
+	display: none;
+}
+
+
+
+#PH_head
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-radius: 5px;
+	box-shadow: 0 0 4px lightgrey;
+	margin: 10px;
+	align-items: center;
+}
+
+#PH_head_txt
+{
+	flex: 1;
+	padding: 5px 10px 5px 10px;
+}
+
+#PH_head_txt_title
+{
+	font-size: 1.1em;
+}
+
+#PH_head_txt_title,
+#PH_head_txt_sub
+{
+	transition: opacity 1s;
+}
+
+#PH_head_weather
+{
+	height: 50px;
+}
+
+#PH_head_temp
+{
+	height:50px;
+	width: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#PH_head_temp_value
+{
+	font-weight: bold;
+	font-size: 1.3em;
+}
+#PH_head_temp_value:after
+{
+	content:"°";
+}
+
+.DispManagerAnticipate{
+	opacity: 0;
+}
+.DispManager{
+	opacity: 1;
+}
+
+
+

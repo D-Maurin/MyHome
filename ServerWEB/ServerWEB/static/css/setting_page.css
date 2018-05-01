@@ -1,0 +1,72 @@
+.PS_group
+{
+	margin:10px;
+}
+
+.PS_head
+{
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 0 4px lightgrey;
+	font-size: 1.1em;
+	background: rgb(230,230,230);
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.PS_core
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.PS_passwd_input
+{
+	border: solid rgb(230,230,230) 1px;
+	border-radius: 5px;
+	padding: 5px;
+	-webkit-user-select: text;
+	user-select: text;
+	flex:2;
+	margin: 5px;
+	min-width: 200px;
+	font-family: myfont;
+}
+
+#PS_passwdsave
+{
+	border: solid rgb(230,230,230) 1px;
+	border-radius: 5px;
+	padding: 5px;
+	-webkit-user-select: text;
+	user-select: text;
+	flex:1;
+	margin: 5px;
+	cursor: pointer;
+	font-family: myfont;
+	color: rgb(100, 100, 100);
+}
+
+.PS_notify
+{
+	margin: 5px;
+	border-radius: 5px;
+	padding:5px;
+	color: white;
+}
+
+.PS_notify[nrun="false"]
+{
+	display: none;
+}
+
+.PS_notify[ntype="success"]
+{
+	background: lightgreen;
+}
+.PS_notify[ntype="error"]
+{
+	background: orangered;
+}

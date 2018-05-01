@@ -1,0 +1,149 @@
+#Page_Infos
+{
+	display: flex;
+}
+
+@media (min-width:500px){ #Page_Infos{
+	flex-direction: row;
+}}
+@media (max-width:500px){ #Page_Infos{
+	flex-direction: column;
+}}
+
+
+.PI_group
+{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.PI_head
+{
+	border-radius: 5px;
+	overflow:hidden;
+	box-shadow: 0 0 4px lightgrey;
+	margin:10px;
+	font-size: 1.1em;
+	background: rgb(230,230,230);
+	padding: 7px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.PI_head_edit
+{
+	background: url(/static/img/edit.svg);
+	width: 20px;
+	height: 20px;
+	background-size: contain;
+	background-position: center;
+	vertical-align: sub;
+	cursor: pointer;
+	transition: transform .1s;
+}
+.PI_head_edit:active
+{
+	transform: scale(0.90);
+}
+
+
+.PI_sensor_info,
+.PI_regulator_info
+{
+	border-radius: 5px;
+	box-shadow: 0 0 4px lightgrey;
+	margin:10px;
+	margin-top: 2px;
+	padding: 7px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap:wrap;
+	position: relative;
+	transition: 0.4s;
+}
+
+.PI_ri_RID_room:not(:empty):before,
+.PI_si_SID_room:not(:empty):before
+{
+	content:" : ";
+}
+
+.PI_si_state_uptd[uptd="0"],
+.PI_ri_state_uptd[uptd="0"]
+{
+	background: url(/static/img/s_disconnect.svg);
+}
+.PI_si_state_uptd[uptd="1"],
+.PI_ri_state_uptd[uptd="1"]
+{
+	background: url(/static/img/s_connect.svg);
+}
+.PI_si_state_used[used="0"],
+.PI_ri_state_used[used="0"]
+{
+	background: url(/static/img/s_notlinked.svg);
+}
+.PI_si_state_used[used="1"],
+.PI_ri_state_used[used="1"]
+{
+	background: url(/static/img/s_linked.svg);
+}
+
+.PI_si_state_uptd, .PI_si_state_used,
+.PI_ri_state_uptd, .PI_ri_state_used
+{
+	width: 30px;
+	height:20px;
+	background-position: center !important;
+	background-size: contain !important;
+	background-repeat: no-repeat !important;
+}
+
+.PI_si_SID,
+.PI_ri_RID
+{
+	flex: 1;
+}
+.PI_si_state,
+.PI_ri_state
+{
+	display:flex;
+	flex-direction: row;
+}
+
+
+
+.PI_si_del,
+.PI_ri_del
+{
+	transition: right .2s, width .2s, opacity .8s;
+	opacity: 0;
+	position: absolute;
+	right: 0px;
+	width: 0px;
+	top: 0px;
+	bottom: 0px;
+	box-shadow: 0 0 5px lightgrey;
+	border-radius: 5px;
+	cursor: pointer;
+	background: url(/static/img/bt_del.svg) #ff5700;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	transition: 0.4s;
+}
+
+#PI_sensors[edit_mode="true"] .PI_sensor_info[deletable="0"],
+#PI_regulators[edit_mode="true"] .PI_regulator_info[deletable="0"]
+{
+	margin-right:40px;
+}
+
+#PI_sensors[edit_mode="true"] .PI_sensor_info[deletable="0"] .PI_si_del,
+#PI_regulators[edit_mode="true"] .PI_regulator_info[deletable="0"] .PI_ri_del
+{
+	width:20px;
+	right: -30px;
+	opacity: 1;
+}

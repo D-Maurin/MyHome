@@ -1,0 +1,67 @@
+body
+{
+	position: absolute;
+	margin: 0px;
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	align-items: center;
+	width:100%;
+	height: 100%;
+
+	font-family: myfont;
+}
+
+#passwd_enter_group
+{
+	box-shadow: 0 0 5px lightgrey;
+	border-radius: 5px;
+	overflow: hidden;
+
+	width:100%;
+	max-width: 300px;
+}
+
+#input_title
+{
+	padding: 5px 10px 5px 10px;
+	background: #ffcc00;
+	color: white;
+	font-size: 1.3em;
+}
+
+#input_form
+{
+	padding: 20px 10px 20px 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+#input_passwd
+{
+	padding: 2px;
+	border-radius: 4px;
+	border: solid lightgrey 1px;
+	margin-bottom: 14px;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 1em;
+}
+
+#input_submit
+{
+	padding: 2px 5px 2px 5px;
+	background: lightgrey;
+	border-radius: 4px;
+	border:none;
+	box-shadow: 0 0 3px lightgrey;
+	cursor: pointer;
+	font-size: 1em;
+	color:rgb(100, 100, 100);
+}
+#input_submit:active
+{
+	box-shadow: 0 0 1px lightgrey;
+}

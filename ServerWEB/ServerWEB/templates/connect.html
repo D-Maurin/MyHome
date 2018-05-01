@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Se Connecter</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" href="/static/css/connect.css">
+		<link rel="stylesheet" href="/static/css/font.css">
+	</head>
+
+	<body>
+		<div id="passwd_enter_group">
+			<div id="input_title">
+				Connexion à distance
+			</div>
+			<form action="{{ url_for('login') }}" method="POST" id="input_form">
+				<input name="passwd" type="password" id="input_passwd"/>
+				<input type="submit" value="Se Connecter" id="input_submit"/>
+			</form>
+		</div>
+	</body>
+</html>

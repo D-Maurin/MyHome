@@ -1,0 +1,73 @@
+body > *:not(#section),
+#Page_Home > *:not(#PH_rooms),
+.Edit_room_name, .PH_edit_room, .rm_editor, .etd_warning, .Edit_room_modules
+{
+	display: none;
+} 
+
+body
+{
+	font-family: myfont;
+}
+
+
+.PageDelimiterPrint:not(:first-child)
+{
+	page-break-before: always;
+}
+.PageDelimiterPrint
+{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	justify-content: flex-start;
+	border-bottom: solid grey 2px;
+	align-items: center;
+	margin-bottom: 5px;
+}
+.PageDelimiterPrint > img
+{
+	width: 30px;
+	height: 30px;
+}
+.PageDelimiterPrint > div
+{
+	font-size: 1.2em;
+	color:grey;
+}
+
+.PH_room_name, .PI_head
+{
+	font-size: 1.1em;
+	margin-bottom:5px;
+	margin-top: 5px;
+}
+
+.PH_room_values, .PH_room_history,
+.PI_sensor_info, .PI_regulator_info
+{
+	padding-left: 5px;
+	border-left: solid grey 1px;
+}
+
+.sensor_module, .regulator_module
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+
+}
+
+.ext_temp_disp
+{
+	margin-left: 5px;
+	border-radius: 2px;
+	padding-right: 2px;
+	padding-left: 2px;
+	color: white;
+}
+
+
+.PI_ri_RID_room:not(:empty)::before, .PI_si_SID_room:not(:empty)::before {
+    content: " : ";
+}

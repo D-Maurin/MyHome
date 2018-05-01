@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>MyHome</title>
+		
+		<link rel="stylesheet" href="/static/css/font.css">
+		
+		<link rel="stylesheet" href="/static/css/main.css" media="not print">
+		<link rel="stylesheet" href="/static/css/home_page.css" media="not print">
+		<link rel="stylesheet" href="/static/css/home_page_edit.css" media="not print">
+		<link rel="stylesheet" href="/static/css/info_page.css" media="not print">
+		<link rel="stylesheet" href="/static/css/setting_page.css" media="not print">
+
+		<link rel="stylesheet" href="/static/css/print.css" media="print">
+		
+		<script src="/static/js/ext_templates.js"></script>
+		<script src="/static/js/ext_temp_display.js"></script>
+		<script src="/static/js/ext_task_manager.js"></script>
+		<script src="/static/js/ext_room_util.js"></script>
+		<script src="/static/js/ext_help.js"></script>
+		<script src="/static/js/ext_contextmenu.js"></script>
+		<script src="/static/js/ext_help_models.js"></script>
+		<script src="/static/js/ext_settings.js"></script>
+		
+		<script src="/static/js/main_module_room.js"></script>
+		<script src="/static/js/main_module_room_editor.js"></script>
+		<script src="/static/js/main_module_room_creator.js"></script>
+		
+		<script src="/static/js/module_regulator_info.js"></script>
+		<script src="/static/js/module_regulator_set.js"></script>
+		<script src="/static/js/module_sensor_info.js"></script>
+		<script src="/static/js/module_history.js"></script>
+		<script src="/static/js/module_regulator_edit.js"></script>
+		<script src="/static/js/module_sensor_edit.js"></script>
+		
+		<meta name="viewport" content="width=device-width">
+		<link rel="icon" href="/static/img/icon_regulator.png" type="image/png"/>
+	</head>
+	
+	<body onload="bodyonload()">
+		<div class="PRELOAD">
+			<img src="/static/img/home_normal.svg" alt="PRELOAD"/>
+			<img src="/static/img/planify_selected.svg" alt="PRELOAD"/>
+			<img src="/static/img/settings_selected.svg" alt="PRELOAD"/>
+			<img src="/static/img/info_selected.svg" alt="PRELOAD"/>
+		</div>
+		
+		<div class="TARG" id="Home"></div>
+		<div class="TARG" id="Planify"></div>
+		<div class="TARG" id="Settings"></div>
+		<div class="TARG" id="Infos"></div>
+	
+		<header>
+			<a class="menu_button" id="mb_1" href="#Home" draggable="false" ondragstart="return false"></a>
+			<a class="menu_button" id="mb_2" href="#Planify" draggable="false" ondragstart="return false"></a>
+			<a class="menu_button" id="mb_3" href="#Settings" draggable="false" ondragstart="return false"></a>
+			<a class="menu_button" id="mb_4" href="#Infos" draggable="false" ondragstart="return false"
+				onclick="LoadSensorsAndRegulatorsInfos()"></a>
+		</header>
+		
+		<section id="section">
+			<div class="PageDelimiterPrint">
+				<img src="/static/img/home_normal.svg"/>
+				<div>Liste des pièces</div>
+			</div>
+			<div class="page" id="Page_Home">
+				<div id="PH_head">
+					<img id="PH_head_weather" src="/static/img/weather_sun.svg" draggable="false" ondragstart="return false" alt="sun"/>
+
+					<div id="PH_head_txt">
+						<div id="PH_head_txt_title" class="DispManager">Bonjour {{name}}</div>
+						<div id="PH_head_txt_sub" class="DispManager">Bonne Journée !</div>
+					</div>
+
+					<div id="PH_head_temp">
+						<div id="PH_head_temp_value">13</div>
+					</div>
+				</div>
+
+				<div id="PH_help_invite" show='false'>
+					<div id="PH_help_invite_text"><span id="PH_help_invite_msg"></span><span id="PH_help_invite_link"></span></div>
+					<div id="PH_help_invite_close" onclick="CloseHelpInvite()"></div>
+				</div>
+
+				<div id="PH_rooms" delete_mode="false"></div>
+
+				<div id="PH_room_button">
+					<div>Ajouter ou Supprimer une pièce : </div>
+					<img id="PH_room_bt_new" draggable="false" ondragstart="return false" src="/static/img/bt_new.svg" onclick="StartCreation()" alt="new"/>
+					<img id="PH_room_bt_del" draggable="false" ondragstart="return false" src="/static/img/bt_del.svg" onclick="StartOrStopDeletion()" alt="delete"/>
+				</div>
+
+				<div id="PH_new_room" running="false"></div>
+				<div style="height: 10px"></div>
+			</div>
+
+			<div class="PageDelimiterPrint">
+				<img src="/static/img/planify_normal.svg"/>
+				<div>Planification</div>
+			</div>
+			<div class="page" id="Page_Planify">
+			</div>
+
+			<div class="PageDelimiterPrint">
+				<img src="/static/img/settings_normal.svg"/>
+				<div>Paramètres</div>
+			</div>
+			<div class="page" id="Page_Settings">
+				<div class="PS_group">
+					<div class="PS_head">
+						Parametres d'accès à distance
+					</div>
+					<div class="PS_notify" ntype="error" nrun="false" id="PS_notify_passwd">
+
+					</div>
+					<form class="PS_core" onsubmit="ChangePasswd(this); return false">
+						<input id="PS_passwd" class="PS_passwd_input" type="password" placeholder="Ancien mot de passe" name="oldpasswd" required/>
+						<input id="PS_newpasswd" class="PS_passwd_input" type="password" placeholder="Nouveau mot de passe" name="newpasswd" oninput="samePasswdCheck(this.parentNode)" required/>
+						<input id="PS_newpasswdconfirm" class="PS_passwd_input" type="password" placeholder="Confirmation mot de passe" name="cnfpasswd" oninput="samePasswdCheck(this.parentNode)" required />
+						<input id="PS_passwdsave" type="submit" value="Changer"/>
+					</form>
+				</div>
+			</div>
+
+			<div class="PageDelimiterPrint">
+				<img src="/static/img/info_normal.svg"/>
+				<div>Liste des modules</div>
+			</div>
+			<div class="page" id="Page_Infos">
+				<div id="PI_sensors" class="PI_group" edit_mode="false">
+					<div class="PI_head">
+						<div class="PI_head_title">Capteurs</div>
+						<div class="PI_head_edit" onclick="StartOrStopDeletionSensor()"></div>
+					</div>
+					<div class="PI_group_list">
+					</div>
+				</div>
+				<div id="PI_regulators" class="PI_group" edit_mode="false">
+					<div class="PI_head">
+						<div class="PI_head_title">Radiateurs</div>
+						<div class="PI_head_edit" onclick="StartOrStopDeletionRegulator()"></div>
+					</div>
+					<div class="PI_group_list">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<svg help_active="false" id="help_main" width="100%" height="100%" style="">
+			<circle id="help_circle" cx="0" fill="transparent" cy="0" stroke-width="0" r="0" style=""></circle>
+			<path id="help_curve" d="" style=""/>
+		</svg>
+		<div id="help_nav">
+			<div id="help_text_ct" position="left">
+				<div id="help_text">Aide</div>
+			</div>
+			<div onclick="StopHelp()" id="help_stop"></div>
+			<div id="help_next">C'est fait !</div>
+		</div>
+
+		<div id="context_menu" style="display:none;left:0;right:0;">
+			<div class="cm_item_ct" cmi_num="1">
+				<div class="cm_item" onclick='cmActionPrint()'>
+				</div>
+			</div>
+			<div class="cm_item_ct" cmi_num="2">
+				<div class="cm_item" onclick=''>
+				</div>
+			</div>
+			<div class="cm_item_ct" cmi_num="3">
+				<div class="cm_item" onclick='cmActionReload()'>
+				</div>
+			</div>
+			<div class="cm_item_ct" cmi_num="4">
+				<div class="cm_item" onclick=''>
+				</div>
+			</div>
+			<div class="cm_item_ct" cmi_num="5">
+				<div class="cm_item" onclick=''>
+				</div>
+			</div>
+			<div class="cm_item_ct" cmi_num="6">
+				<div class="cm_item" onclick=''>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
