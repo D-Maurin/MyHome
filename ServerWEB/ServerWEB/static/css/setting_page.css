@@ -109,14 +109,25 @@
 	padding: 5px;
 }
 
-input[type="password"]:-moz-ui-invalid, input[type="password"]:invalid,
-input[type="email"]:-moz-ui-invalid, input[type="email"]:invalid,
-textarea:-moz-ui-invalid, textarea:invalid{
+input[type="password"]:-moz-ui-invalid, 
+input[type="email"]:-moz-ui-invalid,
+textarea:-moz-ui-invalid{
+	box-shadow: none;
+}
+input[type="password"]:-moz-ui-valid,
+input[type="email"]:-moz-ui-valid,
+textarea:-moz-ui-valid{
+	box-shadow: none;
+}
+
+input[type="password"]:invalid,
+input[type="email"]:invalid,
+textarea:invalid{
 	box-shadow: 0 0 2px orangered inset;
 }
-input[type="password"]:-moz-ui-valid, input[type="password"]:valid,
-input[type="email"]:-moz-ui-valid, input[type="email"]:valid,
-textarea:-moz-ui-valid, textarea:valid{
+input[type="password"]:valid,
+input[type="email"]:valid,
+textarea:valid{
 	box-shadow: 0 0 2px lightgreen inset;
 }
 
