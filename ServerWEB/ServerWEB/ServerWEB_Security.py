@@ -2,7 +2,6 @@ from flask import *
 from functools import wraps
 import ipaddress as ip
 import sys
-import plyer
 
 def protect(route):
     @wraps(route)
@@ -18,7 +17,6 @@ def protect(route):
         
         sys.stderr.write('\x1b[31m{}\n\x1b[0m'.format("Unauthorized access from " + request.remote_addr))
         
-        plyer.notification.notify(title="Unauthorized access", message=request.remote_addr, app_name="Server WEB", timeout=3600)
         ## Else Refuse Access
         if request.blueprint == "app_API":
             abort(403)
