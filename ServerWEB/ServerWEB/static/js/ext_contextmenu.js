@@ -49,3 +49,7 @@ function cmActionReportBug(){
 	location.hash = "Settings";
 	document.getElementById("PS_group_bug").scrollIntoView({behaviour:"smooth"});
 }
+
+function cmActionGetCode(){
+	location.href = "https://github.com/D-Maurin/MyHome";
+}

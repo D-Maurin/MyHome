@@ -129,8 +129,14 @@
 					<div class="PS_notify" ntype="error" nrun="false" id="PS_notify_bug">
 
 					</div>
-					<form class="PS_core" onsubmit="ReportBug(this); return false">
-						<textarea cols="1" name="bugdescription" id="PS_bugdesc"></textarea>
+					<form class="PS_core" onsubmit="ReportBug(this); return false" id="PS_formbug">
+						<div class="PS_subform">
+							<div id="PS_subform_group">
+								<label for="PS_bugmail">Renseignez votre mail :&nbsp;</label>
+								<input type="email" id="PS_bugmail" name="bugmail" required/>
+							</div>
+							<textarea cols="1" id="PS_bugdesc" name="bugdesc" required></textarea>
+						</div>
 						<input id="PS_sendbug" type="submit" value=""/>
 					</form>
 				</div>
@@ -190,7 +196,7 @@
 				</div>
 			</div>
 			<div class="cm_item_ct" cmi_num="5">
-				<div class="cm_item" onclick=''>
+				<div class="cm_item" onclick='cmActionGetCode()'>
 				</div>
 			</div>
 			<div class="cm_item_ct" cmi_num="6">

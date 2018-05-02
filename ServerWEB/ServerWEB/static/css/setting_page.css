@@ -79,19 +79,19 @@
 	padding: 5px;
 	-webkit-user-select: text;
 	user-select: text;
-	flex:1;
-	margin: 5px;
 	font-family: myfont;
 	box-sizing: border-box;
 	min-height: 40px;
+	width: 100%;
+	margin-top: 5px;
 }
 
 #PS_sendbug
 {
 	border: solid rgb(230,230,230) 1px;
 	border-radius: 5px;
+	margin:5px;
 	padding: 5px;
-	margin: 5px;
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
@@ -101,4 +101,39 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+
+.PS_subform
+{
+	flex:1;
+	padding: 5px;
+}
+
+input[type="password"]:-moz-ui-invalid, input[type="password"]:invalid,
+input[type="email"]:-moz-ui-invalid, input[type="email"]:invalid,
+textarea:-moz-ui-invalid, textarea:invalid{
+	box-shadow: 0 0 2px orangered inset;
+}
+input[type="password"]:-moz-ui-valid, input[type="password"]:valid,
+input[type="email"]:-moz-ui-valid, input[type="email"]:valid,
+textarea:-moz-ui-valid, textarea:valid{
+	box-shadow: 0 0 2px lightgreen inset;
+}
+
+#PS_bugmail
+{
+	border: solid rgb(230,230,230) 1px;
+	border-radius: 5px;
+	padding: 5px;
+	-webkit-user-select: text;
+	user-select: text;
+	font-family: myfont;
+	flex: 1;
+}
+
+#PS_subform_group
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }

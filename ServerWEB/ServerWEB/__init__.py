@@ -1,5 +1,6 @@
 from flask import *
 import hashlib
+import json
 
 # App creation
 app = Flask(__name__)
@@ -13,6 +14,7 @@ app.register_blueprint(app_API)
 
 # Home route
 from .ServerWEB_Security import protect
+from .ServerWEB_Mail import threaded_mail_report_bug
 
 @app.route('/')
 @protect
@@ -77,6 +79,12 @@ def changePasswd():
             
     return "BAD_FORM"
 
+@app.route("/report_bug", methods=["POST"])
+def reportBug():
+    if 'bugmail' in request.form and 'bugdesc' in request.form:
+        threaded_mail_report_bug(request.form['bugmail'], request.form['bugdesc'])
+        return "OK"
+    return "BAD_FORM"
 
 # Run App
 if __name__ == "__main__":

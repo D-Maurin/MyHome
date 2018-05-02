@@ -37,7 +37,8 @@ function samePasswdCheck(form)
 {
 	var fisrt_input = form.newpasswd;
 	var confirm_input = form.cnfpasswd;
-	if(fisrt_input.value != confirm_input.value){
+
+	if(fisrt_input.value != confirm_input.value && confirm_input.value != ""){
 		confirm_input.setCustomValidity("Les mots de passe sont différents");
 	}
 	else{
@@ -47,5 +48,30 @@ function samePasswdCheck(form)
 
 function ReportBug(form)
 {
-	
+	var bugmail = form.bugmail.value;
+	var bugdesc = form.bugdesc.value;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/report_bug');
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+ 	xhr.send('bugdesc=' + bugdesc + '&bugmail=' + bugmail);
+
+ 	xhr.addEventListener('readystatechange', function() {
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			var rcode = xhr.responseText;
+			var ntarget = document.getElementById("PS_notify_bug");
+			ntarget.setAttribute("nrun", "true");
+			if(rcode=="OK"){
+				ntarget.setAttribute("ntype", "success");
+				ntarget.innerHTML = "Le bug a bien été rapporté";
+			}
+			else{
+				ntarget.setAttribute("ntype", "error");
+				ntarget.innerHTML = "Erreur inconnue";
+			}
+		}
+		form.reset();
+	});
+
+	return false;
 }
