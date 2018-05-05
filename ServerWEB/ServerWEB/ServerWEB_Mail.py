@@ -23,7 +23,7 @@ def threaded_mail_report_bug(addr, text):
 
 def mail_report_bug(addr, text):
     #Server Config
-    mailserver = smtplib.SMTP('smtp.gmail.com', 587)
+    mailserver = smtplib.SMTP('smtp.gmail.com')
     mailserver.ehlo()
     mailserver.starttls()
     mailserver.ehlo()
