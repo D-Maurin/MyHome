@@ -18,7 +18,7 @@ def report_temp(SID, temp):
 def report_window(WID, state):
     cnx = cnxpool.get_connection()
     cursor = cnx.cursor()
-    cursor.callproc('report_temp', (WID, state))
+    cursor.callproc('report_window', (WID, state))
     cursor.close()
     cnx.close()
     return "OK"
