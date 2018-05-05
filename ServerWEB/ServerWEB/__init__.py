@@ -115,6 +115,31 @@ def weather():
     
     return jsonify(weather_buffer)
 
+@protect
+@app.route("/update_info", methods=["POST"])
+def updateInfo():
+    if "username" in request.form:
+        cnx = cnxpool.get_connection()
+        cursor = cnx.cursor()
+        changereq = 'UPDATE Settings SET S_VALUE=%s WHERE S_KEY="Name"'
+        cursor.execute(changereq, (request.form["username"],))
+        cursor.close()
+        cnx.close()
+        return "OK"
+    elif "lat" in request.form and "lon" in request.form:
+        global weather_buffer_localisation
+        weather_buffer_localisation = ""
+        
+        loc = "lat=" + request.form["lat"] + "&lon=" + request.form["lon"]
+        cnx = cnxpool.get_connection()
+        cursor = cnx.cursor()
+        changereq = 'UPDATE Settings SET S_VALUE=%s WHERE S_KEY="Localisation"'
+        cursor.execute(changereq, (loc,))
+        cursor.close()
+        cnx.close()
+        return "OK"
+    return "BAD_FORM"
+
 # Run App
 if __name__ == "__main__":
     app.run(host="192.168.1.30", port=80, debug=True, threaded=True)

@@ -23,7 +23,8 @@
 	align-items: center;
 }
 
-.PS_passwd_input
+.PS_passwd_input,
+.PS_text_input
 {
 	border: solid rgb(230,230,230) 1px;
 	border-radius: 5px;
@@ -36,7 +37,9 @@
 	font-family: myfont;
 }
 
-#PS_passwdsave
+#PS_passwdsave,
+#PS_info_save,
+#PS_loc_save
 {
 	border: solid rgb(230,230,230) 1px;
 	border-radius: 5px;
@@ -113,25 +116,27 @@
 	padding: 5px;
 }
 
-input[type="password"]:-moz-ui-invalid, 
-input[type="email"]:-moz-ui-invalid,
-textarea:-moz-ui-invalid{
-	box-shadow: none;
-}
-input[type="password"]:-moz-ui-valid,
-input[type="email"]:-moz-ui-valid,
-textarea:-moz-ui-valid{
+.PS_group input:not([type="submit"])
+
+
+.PS_group input:not([type="submit"]):-moz-ui-invalid,
+.PS_group textarea:-moz-ui-invalid{
 	box-shadow: none;
 }
 
-input[type="password"]:invalid,
-input[type="email"]:invalid,
-textarea:invalid{
+.PS_group input:not([type="submit"]):-moz-ui-valid,
+.PS_group textarea:-moz-ui-valid{
+	box-shadow: none;
+}
+
+
+.PS_group input:not([type="submit"]):invalid,
+.PS_group textarea:invalid{
 	box-shadow: 0 0 2px orangered inset;
 }
-input[type="password"]:valid,
-input[type="email"]:valid,
-textarea:valid{
+
+.PS_group input:not([type="submit"]):valid,
+.PS_group textarea:valid{
 	box-shadow: 0 0 2px lightgreen inset;
 }
 
@@ -151,4 +156,9 @@ textarea:valid{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.PS_label
+{
+	margin: 5px;
 }

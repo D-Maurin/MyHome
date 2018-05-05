@@ -116,6 +116,27 @@
 			<div class="page" id="Page_Settings">
 				<div class="PS_group">
 					<div class="PS_head">
+						Informations &amp; Localisation
+					</div>
+					<div class="PS_notify" ntype="error" nrun="false" id="PS_notify_infoloc">
+
+					</div>
+					<form class="PS_core" onsubmit="ChangeName(this); return false">
+						<label for="PS_info_name" class="PS_label">Votre nom&nbsp;:</label>
+						<input required name="username" type="text" value="{{name}}" id="PS_info_name" class="PS_text_input"/>
+						<input type="submit" value="Modifier" id="PS_info_save">
+					</form>
+					<form class="PS_core" onsubmit="ChangeLoc(this); return false">
+						<label for="PS_loc_lat" class="PS_label">Latitude&nbsp;:</label>
+						<input required pattern="[0-9]{1,2}\.[0-9]+" name="latitude" class="PS_text_input" type="text" id="PS_loc_lat" onclick="tryLocalisation(this)"/>
+						<label for="PS_loc_lon" class="PS_label">Longitude&nbsp;:</label>
+						<input required pattern="[0-9]{1,2}\.[0-9]+" name="longitude" class="PS_text_input" type="text" id="PS_loc_lon" onclick="tryLocalisation(this)"/>
+						<input type="submit" value="Modifier" id="PS_loc_save">
+					</form>
+				</div>
+
+				<div class="PS_group">
+					<div class="PS_head">
 						Parametres d'accès à distance
 					</div>
 					<div class="PS_notify" ntype="error" nrun="false" id="PS_notify_passwd">
