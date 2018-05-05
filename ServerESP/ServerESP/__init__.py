@@ -15,7 +15,7 @@ def report_temp(SID, temp):
     return "OK"
 
 @app.route('/report_window/<string:WID>/<int:state>')
-def report_temp(WID, state):
+def report_window(WID, state):
     cnx = cnxpool.get_connection()
     cursor = cnx.cursor()
     cursor.callproc('report_temp', (WID, state))
