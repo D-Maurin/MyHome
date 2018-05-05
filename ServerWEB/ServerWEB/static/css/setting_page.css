@@ -69,6 +69,10 @@
 {
 	background: orangered;
 }
+.PS_notify[ntype="wait"]
+{
+	background: blueviolet;
+}
 
 #PS_bugdesc
 {

@@ -18,10 +18,11 @@ const TEMPLATE_ROOM = `
 	<div class="Edit_room_modules">
 		<div class="Edit_sensor_module"></div>
 		<div class="Edit_regulator_module"></div>
+		<div class="Edit_window_module"></div>
 	</div>
 	
 	<div class="PH_room_values">
-		<div class="sensor_module" warn_uptd="1">
+		<div class="sensor_module" warn_uptd="false">
 			<div class="sm_title">Température de la pièce&nbsp;:</div>
 			<div class="ext_temp_disp">
 				<span class="etd_temp"></span>
@@ -30,7 +31,7 @@ const TEMPLATE_ROOM = `
 			</div>
 		</div>
 		
-		<div class="regulator_module" warn_has_reg="1" warn_uptd="1">
+		<div class="regulator_module" warn_has_reg="false" warn_uptd="false">
 			<div class="rm_title">Température cible&nbsp;:</div>
 			<div class="ext_temp_disp">
 				<span class="etd_temp" locked="false"></span>
@@ -42,6 +43,14 @@ const TEMPLATE_ROOM = `
 				</div>
 				<img src="/static/img/badge_warning.svg" class="rm_warning etd_warning"
 				 	draggable="false" ondragstart="return false">
+			</div>
+		</div>
+
+		<div class="window_module" warn_uptd="false" open="0" hasw="0">
+			<div class="wm_title">Fenêtre(s)&nbsp;:</div>
+			<div class="wm_state">
+				<img src="/static/img/badge_warning.svg" class="wm_warning etd_warning"
+					draggable="false" ondragstart="return false">
 			</div>
 		</div>
 	</div>
@@ -70,6 +79,7 @@ const TEMPLATE_ROOM_CREATE = `
 	<div class="Edit_room_modules">
 		<div class="Edit_sensor_module"></div>
 		<div class="Edit_regulator_module"></div>
+		<div class="Edit_window_module"></div>
 	</div>
 </div>
 `
@@ -114,6 +124,20 @@ const TEMPLATE_REGULATOR_INFO = `
 </div>
 `
 
+const TEMPLATE_WINDOW_INFO = `
+<div class="PI_window_info" WID="{{{WID}}}" id="window_{{{WID}}}" deletable="{{{deletable}}}">
+	<div class="PI_wi_WID">
+		<span class="PI_wi_WID_wid">{{{WID}}}</span><span class="PI_wi_WID_room">{{{window_room}}}</span>
+	</div>
+	<div class="PI_wi_state">
+		<div class="PI_wi_state_uptd" uptd="{{{window_uptd}}}"></div>
+		<div class="PI_wi_state_used" used="{{{window_used}}}"></div>
+	</div>
+	<div class="PI_wi_del" onclick="DeleteModuleWindow('{{{WID}}}')">
+	</div>
+</div>
+`
+
 const TEMPLATE_REGULATOR_SELECT = `
 <div class="PE_regulator" RID="{{{RID}}}">
 	<input type="checkbox" id="G{{{GID}}}R{{{RID}}}" RID="{{{RID}}}" 
@@ -132,6 +156,17 @@ const TEMPLATE_SENSOR_SELECT = `
 	<label for="G{{{GID}}}S{{{SID}}}" class="PE_sensor_lbl">
 		<div class="PE_sensor_name">{{{SID}}}</div>
 		<div class="PE_sensor_select"></div>
+	</label>
+</div>
+`
+
+const TEMPLATE_WINDOW_SELECT = `
+<div class="PE_window" WID="{{{WID}}}">
+	<input type="checkbox" id="G{{{GID}}}W{{{WID}}}" WID="{{{WID}}}" 
+		init_state="{{{init_state}}}" {{{selected}}} style="display:none"/>
+	<label for="G{{{GID}}}W{{{WID}}}" class="PE_window_lbl">
+		<div class="PE_window_name">{{{WID}}}</div>
+		<div class="PE_window_select"></div>
 	</label>
 </div>
 `

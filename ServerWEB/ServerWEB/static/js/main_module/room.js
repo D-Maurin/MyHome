@@ -50,16 +50,16 @@ function _GetRooms(callback)
 	});
 }
 
-function CreateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD)
+function CreateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD, W_NUMBER, W_UPTD, W_OPEN)
 {
 	var new_room = TEMPLATE_ROOM.replace(/{{{GID}}}/g, GID);
 	RoomsRoot().insertAdjacentHTML("beforeend", new_room);
 	
-	UpdateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD)
+	UpdateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD,  W_NUMBER, W_UPTD, W_OPEN);
 }
 
 
-function UpdateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD)
+function UpdateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD, W_NUMBER, W_UPTD, W_OPEN)
 {
 	var room_to_update = Room(GID);
 	
@@ -76,10 +76,15 @@ function UpdateRoom(GID, Name, Temp, TempTarget, S_UPTD, R_NUMBER, R_UPTD)
 		RoomEdit(GID).name.value = Name;
 		RoomEdit(GID).name.setAttribute("init_name", Name);
 	}
+
+	room_to_update.windows.root.setAttribute("hasw", W_NUMBER);
+	room_to_update.windows.root.setAttribute("open", W_OPEN);
+
 	
 	room_to_update.sensor.root.setAttribute("warn_uptd", !S_UPTD);
 	room_to_update.regulators.root.setAttribute("warn_has_reg", !R_NUMBER);
 	room_to_update.regulators.root.setAttribute("warn_uptd", !R_UPTD);
+	room_to_update.windows.root.setAttribute("warn_uptd", !W_UPTD);
 }
 
 

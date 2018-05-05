@@ -14,8 +14,8 @@
    viewBox="0 0 50 50"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.1 r15371"
-   sodipodi:docname="weather_cloud.svg">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="03d.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.2"
-     inkscape:cx="15.368788"
+     inkscape:cx="-2.9794263"
      inkscape:cy="25.098197"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,14 +58,14 @@
      id="layer1"
      transform="translate(0,-283.77081)">
     <path
-       style="fill:none;stroke:#00aaff;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 21.655145,306.37042 c -11.108256,-8.51361 -17.3412,9.39605 -5.177032,11.42735 l 20.897531,-0.0632 c 8.274233,0.0278 5.813911,-13.51926 -3.429071,-7.89178"
+       style="fill:none;stroke:#00aaff;stroke-width:1.99999988;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 20.854987,306.651 c -11.5434452,-8.86075 -18.0205785,9.77917 -5.379853,11.89329 l 21.716236,-0.0658 c 8.598395,0.029 6.041684,-14.0705 -3.563411,-8.21355"
        id="path4512"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccc" />
     <path
-       style="fill:none;stroke:#00aaff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 19.257741,304.88941 c 4.776789,-10.37919 17.343695,-6.75682 18.64311,3.58834"
+       style="fill:none;stroke:#00aaff;stroke-width:1.99999988;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 18.363659,305.1096 c 4.96393,-10.8024 18.023172,-7.03232 19.373494,3.73465"
        id="path4514"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />

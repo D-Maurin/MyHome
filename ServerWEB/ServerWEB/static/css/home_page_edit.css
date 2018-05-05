@@ -71,6 +71,7 @@
 }
 
 .Edit_sensor_module,
+.Edit_window_module,
 .Edit_regulator_module
 {
 	padding: 5px;
@@ -94,6 +95,7 @@
 }
 
 .PE_sensor,
+.PE_window,
 .PE_regulator
 {
 	margin:5px;
@@ -103,6 +105,7 @@
 }
 
 .PE_sensor_lbl,
+.PE_window_lbl,
 .PE_regulator_lbl
 {
 	display: flex;
@@ -112,6 +115,7 @@
 }
 
 .PE_sensor_select,
+.PE_window_select,
 .PE_regulator_select
 {
 	width:12px;
@@ -127,12 +131,14 @@
 {
 	border-radius: 50%;
 }
-.PE_regulator_select
+.PE_regulator_select,
+.PE_window_select
 {
 	border-radius: 20%;
 }
 
 input:checked ~ label > .PE_sensor_select,
+input:checked ~ label > .PE_window_select,
 input:checked ~ label > .PE_regulator_select
 {
 	background: #ffcc00;

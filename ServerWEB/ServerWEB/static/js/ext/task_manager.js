@@ -27,12 +27,13 @@ function StartIntervals()
 }
 
 
-function LoadSensorsAndRegulatorsInfos()
+function LoadSensorsAndRegulatorsAndWindowsInfos()
 {
 	if(window.location.hash == "#Infos")
 	{
 		_GetSensors();
 		_GetRegulators();
+		_GetWindows();
 	}
 }
 
@@ -45,8 +46,9 @@ ONLOADTASK.push(() => {
 	Home_Message.add("Gardez un oeil sur la température de votre maison", "où que vous soyez !", false, true)
 ;})
 ONLOADTASK.push(StartIntervals);
-ONLOADTASK.push(LoadSensorsAndRegulatorsInfos);
-ONHASHCHANGETASK.push(LoadSensorsAndRegulatorsInfos);
+ONLOADTASK.push(LoadSensorsAndRegulatorsAndWindowsInfos);
+ONLOADTASK.push(loadWeather);
+ONHASHCHANGETASK.push(LoadSensorsAndRegulatorsAndWindowsInfos);
 
 
 

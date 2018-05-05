@@ -24,6 +24,7 @@ function StartCreation(first)
 		}
 		LoadRoomsRegulators(0, callback_creation);
 		LoadRoomsSensors(0, callback_creation);
+		LoadRoomsWindows(0, callback_creation);
 
 	}
 }
@@ -60,6 +61,18 @@ function RoomCreation()
 					action_add_regulator(GID, input_r.getAttribute("RID"));
 				}
 			}
+
+			var inputs_windows = document.querySelectorAll("[id^='G0W']");
+			for (var i = 0; i < inputs_windows.length; i++) {
+				var input_w = inputs_windows[i];
+
+				if(input_w.checked)
+				{
+					console.log("Affecting Window (" + input_w.getAttribute("WID") + ")");
+					action_add_window(GID, input_w.getAttribute("WID"));
+				}
+			}
+
 			CancelCreation();
 			_GetRooms();
 		}	

@@ -69,21 +69,26 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	align-items: center;
 }
 
-.sensor_module, .regulator_module
+.sensor_module, .regulator_module, .window_module
 {
 	display:flex;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
 }
-.sm_title, .rm_title
+
+
+
+.sm_title, .rm_title, .wm_title
 {
 	margin:5px;
 	flex:1;
 }
 
+.wm_state,
 .ext_temp_disp
 {
 	width: 60px;
@@ -101,6 +106,36 @@
 	position: relative;
 	transition: background 5s;
 }
+
+.window_module[hasw="0"]
+{
+	display: none;
+}
+
+.window_module[open="0"] .wm_state
+{
+	background: 
+		url(/static/img/window.svg), 
+		radial-gradient(circle at 0px 0px, 
+			rgb(255, 143, 0), 
+			rgb(255, 179, 0) 70%);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.window_module:not([open="0"]) .wm_state
+{
+	background: 
+		url(/static/img/window_opened.svg), 
+		radial-gradient(circle at 0px 0px, 
+			rgb(163, 210, 86), 
+			rgb(122, 201, 125) 70%);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
 .ext_temp_disp span:after{content:"°"}
 
 
@@ -214,7 +249,8 @@
 	display: none;
 }
 
-.sensor_module[warn_uptd="true"] > .ext_temp_disp > .sm_warning
+.sensor_module[warn_uptd="true"] > .ext_temp_disp > .sm_warning,
+.window_module[warn_uptd="true"] > .wm_state > .wm_warning
 {
 	display: block;
 	right: -10px;

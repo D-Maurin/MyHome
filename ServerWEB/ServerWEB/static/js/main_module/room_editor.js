@@ -3,8 +3,10 @@ function StartEdition(gid)
 	RoomEdit(gid).root.setAttribute("edit_mode", "true");
 	RoomEdit(gid).regulators.innerHTML = "";
 	RoomEdit(gid).sensors.innerHTML = "";
+	RoomEdit(gid).windows.innerHTML = "";
 	LoadRoomsRegulators(gid);
 	LoadRoomsSensors(gid);
+	LoadRoomsWindows(gid);
 
 	for (var i = 0; i < GID_LIST.length; i++) {
 		if(GID_LIST[i] != gid){
@@ -24,6 +26,7 @@ function SaveEdition(gid)
 {
 	SaveRoomsSensor(gid);
 	SaveRoomsRegulators(gid);
+	SaveRoomsWindows(gid);
 	SaveRoomsName(gid);
 
 	_GetRooms();

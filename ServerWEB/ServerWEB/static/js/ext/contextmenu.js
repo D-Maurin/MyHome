@@ -30,6 +30,9 @@ async function cmActionPrint(){
 	promise_chain.push(new Promise(resolve => {
 		_GetRegulators(() => resolve(true));
 	}));
+	promise_chain.push(new Promise(resolve => {
+		_GetWindows(() => resolve(true));
+	}));
 
 	for (var i = 0; i < GID_LIST.length; i++) {
 		promise_chain.push(new Promise(resolve => {

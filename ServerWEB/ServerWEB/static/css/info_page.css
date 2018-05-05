@@ -1,19 +1,13 @@
 #Page_Infos
 {
 	display: flex;
+	flex-wrap: wrap;
 }
-
-@media (min-width:500px){ #Page_Infos{
-	flex-direction: row;
-}}
-@media (max-width:500px){ #Page_Infos{
-	flex-direction: column;
-}}
-
 
 .PI_group
 {
-	width: 100%;
+	flex: 1;
+	min-width: 270px;
 	display: flex;
 	flex-direction: column;
 }
@@ -49,7 +43,8 @@
 
 
 .PI_sensor_info,
-.PI_regulator_info
+.PI_regulator_info,
+.PI_window_info
 {
 	border-radius: 5px;
 	box-shadow: 0 0 4px lightgrey;
@@ -64,34 +59,40 @@
 }
 
 .PI_ri_RID_room:not(:empty):before,
-.PI_si_SID_room:not(:empty):before
+.PI_si_SID_room:not(:empty):before,
+.PI_wi_WID_room:not(:empty):before
 {
 	content:" : ";
 }
 
 .PI_si_state_uptd[uptd="0"],
-.PI_ri_state_uptd[uptd="0"]
+.PI_ri_state_uptd[uptd="0"],
+.PI_wi_state_uptd[uptd="0"]
 {
 	background: url(/static/img/s_disconnect.svg);
 }
 .PI_si_state_uptd[uptd="1"],
-.PI_ri_state_uptd[uptd="1"]
+.PI_ri_state_uptd[uptd="1"],
+.PI_wi_state_uptd[uptd="1"]
 {
 	background: url(/static/img/s_connect.svg);
 }
 .PI_si_state_used[used="0"],
-.PI_ri_state_used[used="0"]
+.PI_ri_state_used[used="0"],
+.PI_wi_state_used[used="0"]
 {
 	background: url(/static/img/s_notlinked.svg);
 }
 .PI_si_state_used[used="1"],
-.PI_ri_state_used[used="1"]
+.PI_ri_state_used[used="1"],
+.PI_wi_state_used[used="1"]
 {
 	background: url(/static/img/s_linked.svg);
 }
 
 .PI_si_state_uptd, .PI_si_state_used,
-.PI_ri_state_uptd, .PI_ri_state_used
+.PI_ri_state_uptd, .PI_ri_state_used,
+.PI_wi_state_uptd, .PI_wi_state_used
 {
 	width: 30px;
 	height:20px;
@@ -101,11 +102,13 @@
 }
 
 .PI_si_SID,
-.PI_ri_RID
+.PI_ri_RID,
+.PI_wi_WID
 {
 	flex: 1;
 }
 .PI_si_state,
+.PI_wi_state,
 .PI_ri_state
 {
 	display:flex;
@@ -115,6 +118,7 @@
 
 
 .PI_si_del,
+.PI_wi_del,
 .PI_ri_del
 {
 	transition: right .2s, width .2s, opacity .8s;
@@ -135,12 +139,14 @@
 }
 
 #PI_sensors[edit_mode="true"] .PI_sensor_info[deletable="0"],
+#PI_windows[edit_mode="true"] .PI_window_info[deletable="0"],
 #PI_regulators[edit_mode="true"] .PI_regulator_info[deletable="0"]
 {
 	margin-right:40px;
 }
 
 #PI_sensors[edit_mode="true"] .PI_sensor_info[deletable="0"] .PI_si_del,
+#PI_windows[edit_mode="true"] .PI_window_info[deletable="0"] .PI_wi_del,
 #PI_regulators[edit_mode="true"] .PI_regulator_info[deletable="0"] .PI_ri_del
 {
 	width:20px;

@@ -17,12 +17,12 @@
 		
 		<script src="/static/js/ext/templates.js"></script>
 		<script src="/static/js/ext/temp_display.js"></script>
-		<script src="/static/js/ext/task_manager.js"></script>
 		<script src="/static/js/ext/room_util.js"></script>
 		<script src="/static/js/ext/help.js"></script>
 		<script src="/static/js/ext/contextmenu.js"></script>
 		<script src="/static/js/ext/help_models.js"></script>
 		<script src="/static/js/ext/settings.js"></script>
+		<script src="/static/js/ext/weather.js"></script>
 		
 		<script src="/static/js/main_module/room.js"></script>
 		<script src="/static/js/main_module/room_editor.js"></script>
@@ -35,6 +35,11 @@
 		<script src="/static/js/module_sensor/info.js"></script>
 		<script src="/static/js/module_sensor/edit.js"></script>
 		<script src="/static/js/module_history/history.js"></script>
+
+		<script src="/static/js/module_window/info.js"></script>
+		<script src="/static/js/module_window/edit.js"></script>
+		
+		<script src="/static/js/ext/task_manager.js"></script>
 		
 		<meta name="viewport" content="width=device-width">
 		<link rel="icon" href="/static/img/icon_regulator.png" type="image/png"/>
@@ -68,7 +73,7 @@
 			</div>
 			<div class="page" id="Page_Home">
 				<div id="PH_head">
-					<img id="PH_head_weather" src="/static/img/weather_sun.svg" draggable="false" ondragstart="return false" alt="sun"/>
+					<img id="PH_head_weather" src="/static/img/weather/01d.svg" draggable="false" ondragstart="return false" alt="sun"/>
 
 					<div id="PH_head_txt">
 						<div id="PH_head_txt_title" class="DispManager">Bonjour {{name}}</div>
@@ -76,7 +81,7 @@
 					</div>
 
 					<div id="PH_head_temp">
-						<div id="PH_head_temp_value">13</div>
+						<div id="PH_head_temp_value">~</div>
 					</div>
 				</div>
 
@@ -160,6 +165,14 @@
 					<div class="PI_head">
 						<div class="PI_head_title">Radiateurs</div>
 						<div class="PI_head_edit" onclick="StartOrStopDeletionRegulator()"></div>
+					</div>
+					<div class="PI_group_list">
+					</div>
+				</div>
+				<div id="PI_windows" class="PI_group" edit_mode="false">
+					<div class="PI_head">
+						<div class="PI_head_title">Fenêtres</div>
+						<div class="PI_head_edit" onclick="StartOrStopDeletionWindow()"></div>
 					</div>
 					<div class="PI_group_list">
 					</div>

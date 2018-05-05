@@ -56,11 +56,15 @@ function ReportBug(form)
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
  	xhr.send('bugdesc=' + bugdesc + '&bugmail=' + bugmail);
 
+	var ntarget = document.getElementById("PS_notify_bug");
+	ntarget.setAttribute("nrun", "true");
+	ntarget.innerHTML = "Rapport en cours d'envoi ...";
+	ntarget.setAttribute("ntype", "wait");
+
  	xhr.addEventListener('readystatechange', function() {
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 			var rcode = xhr.responseText;
 			var ntarget = document.getElementById("PS_notify_bug");
-			ntarget.setAttribute("nrun", "true");
 			if(rcode=="OK"){
 				ntarget.setAttribute("ntype", "success");
 				ntarget.innerHTML = "Le bug a bien été rapporté";
