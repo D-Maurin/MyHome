@@ -1,0 +1,10 @@
+CREATE OR REPLACE PROCEDURE `action_change_name` 
+( 
+    IN p_GID INT UNSIGNED, 
+    IN p_Name VARCHAR(50)
+) 
+BEGIN 
+    IF (SELECT EXISTS (SELECT * FROM Rooms WHERE GID=p_GID)) THEN
+        UPDATE Rooms SET Name=p_Name WHERE GID=p_GID;
+    END IF; 
+END

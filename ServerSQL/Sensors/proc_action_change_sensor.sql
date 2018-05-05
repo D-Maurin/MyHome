@@ -1,0 +1,12 @@
+CREATE OR REPLACE PROCEDURE `action_change_sensor` 
+( 
+    IN p_GID INT UNSIGNED, 
+    IN p_SID VARCHAR(10)
+) 
+BEGIN 
+    IF (SELECT EXISTS (SELECT * FROM Rooms WHERE GID=p_GID)) 
+        AND (SELECT EXISTS (SELECT * FROM Sensors WHERE SID=p_SID)) 
+        AND NOT (SELECT EXISTS (SELECT * FROM Rooms WHERE Sensor=p_SID)) THEN  
+            UPDATE Rooms SET Sensor=p_SID WHERE GID=p_GID;
+    END IF; 
+END

@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE `del_module_window` 
+( 
+    IN p_WID VARCHAR(10)
+) 
+BEGIN 
+    DELETE FROM Windows WHERE WID=p_WID;
+END

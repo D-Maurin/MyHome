@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE `del_module_sensor` 
+( 
+    IN p_SID VARCHAR(10)
+) 
+BEGIN 
+    DELETE FROM Sensors WHERE SID=p_SID;
+END

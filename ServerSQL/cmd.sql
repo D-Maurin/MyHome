@@ -1,0 +1,65 @@
+CREATE USER 'webclient'@'localhost' IDENTIFIED BY 'webconnect';
+CREATE USER 'espclient'@'localhost' IDENTIFIED BY 'espconnect';
+
+GRANT ALL PRIVILEGES ON * . * TO 'webclient'@'localhost';
+GRANT ALL PRIVILEGES ON * . * TO 'espclient'@'localhost';
+
+CREATE DATABASE TempSystem;
+USE TempSystem;
+
+CREATE TABLE Rooms(
+    GID INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
+    TempTarget  NUMERIC(3,1) NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Sensor VARCHAR(10) UNIQUE
+);
+
+CREATE TABLE Sensors( 
+    SID VARCHAR(10) NOT NULL UNIQUE, 
+    Value  NUMERIC(3,1) NOT NULL, 
+    LastUpdate DATETIME NOT NULL 
+);
+
+CREATE TABLE Regulators( 
+    RID VARCHAR(10) NOT NULL UNIQUE, 
+    LastUpdate DATETIME NOT NULL  
+);
+
+CREATE TABLE RegulatorsLinks(
+    GID INT UNSIGNED NOT NULL,
+    RID VARCHAR(10) NOT NULL UNIQUE
+);
+
+CREATE TABLE SensorsHistory(
+    SID VARCHAR(10) NOT NULL,
+    Value  NUMERIC(3,1) NOT NULL,
+    VTime DATETIME NOT NULL
+);
+
+ALTER TABLE Rooms 
+ADD CONSTRAINT fk_SID 
+    FOREIGN KEY (Sensor) 
+    REFERENCES Sensors(SID) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE;
+
+ALTER TABLE RegulatorsLinks 
+ADD CONSTRAINT fk_RID 
+    FOREIGN KEY (RID) 
+    REFERENCES Regulators(RID) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE;
+	
+ALTER TABLE RegulatorsLinks 
+ADD CONSTRAINT fk_GID 
+    FOREIGN KEY (GID) 
+    REFERENCES Rooms(GID) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE;
+
+ALTER TABLE SensorsHistory 
+ADD CONSTRAINT fk_SID_History
+    FOREIGN KEY (SID) 
+    REFERENCES Sensors(SID) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE;

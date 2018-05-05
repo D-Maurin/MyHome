@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE `del_room` 
+( 
+    IN p_GID VARCHAR(10)
+) 
+BEGIN 
+    DELETE FROM Rooms WHERE GID=p_GID;
+END
