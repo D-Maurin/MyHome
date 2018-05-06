@@ -146,11 +146,13 @@ function tryLocalisation(el)
 {
 	if("geolocation" in navigator)
 	{
-		navigator.geolocation.getCurrentPosition(position => {
-		  	if(el.parentNode.latitude.value == "" && el.parentNode.longitude.value == ""){
-			  	el.parentNode.latitude.value = position.coords.latitude;
-			  	el.parentNode.longitude.value = position.coords.longitude;
-			}
-		});
+		if(el.parentNode.latitude.value == "" && el.parentNode.longitude.value == ""){
+			navigator.geolocation.getCurrentPosition(position => {
+			  	if(el.parentNode.latitude.value == "" && el.parentNode.longitude.value == ""){
+				  	el.parentNode.latitude.value = position.coords.latitude;
+				  	el.parentNode.longitude.value = position.coords.longitude;
+				}
+			});
+		}
 	}
 }

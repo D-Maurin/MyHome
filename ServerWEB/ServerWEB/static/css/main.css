@@ -32,6 +32,11 @@ body{
 	flex-direction: column;
 }}
 
+input:focus, textarea:focus
+{
+	outline: none;
+}
+
 
 header
 {
