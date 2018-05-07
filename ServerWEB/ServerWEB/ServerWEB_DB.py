@@ -2,10 +2,10 @@ import mysql.connector
 from mysql.connector import pooling
 
 dbconfig = {
-    'user': 'testclient',
-    'password': 'testconnect',
+    'user': 'webclient',
+    'password': 'webconnect',
     'database': 'TempSystem',
-    'host': '192.168.1.100',
+    'host': 'localhost',
     'autocommit': True
 }
 

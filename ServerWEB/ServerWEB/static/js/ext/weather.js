@@ -9,7 +9,7 @@ function loadWeather()
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 			var response = JSON.parse(xhr.responseText);
 
-			var weather_temp = response.main.temp;
+			var weather_temp = response.main.temp.toFixed(0);
 			var weather_icon = "/static/img/weather/" + response.weather[0].icon + ".svg";
 
 			document.getElementById("PH_head_weather").src = weather_icon;

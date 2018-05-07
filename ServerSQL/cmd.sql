@@ -47,6 +47,16 @@ CREATE TABLE SensorsHistory(
     VTime DATETIME NOT NULL
 );
 
+CREATE TABLE Settings(
+	S_KEY VARCHAR(100) NOT NULL UNIQUE,
+	S_VALUE VARCHAR(100) 
+);
+
+INSERT INTO Settings VALUES
+	("Name", "Inconnu"),
+	("Password", "13d8c9009647abffee45341993ab3952f57c361d"),
+	("Localisation", "lat=0&lon=0");
+
 ALTER TABLE Rooms 
 ADD CONSTRAINT fk_SID 
     FOREIGN KEY (Sensor) 
