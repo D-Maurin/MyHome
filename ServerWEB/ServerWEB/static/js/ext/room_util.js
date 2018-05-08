@@ -1,3 +1,7 @@
+/*#######################
+room_util.js - Raccourcis
+#######################*/
+
 $select = (t) => document.querySelector(t);
 
 Room = (ID) => ({

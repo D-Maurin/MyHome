@@ -1,12 +1,20 @@
+/*#########################################
+settings.js - Fonctions de la page settings
+#########################################*/
+
+//Change le mot de passe
 function ChangePasswd(form)
 {
+	//On recupere les donnés du formulaire (form)
 	var oldpasswd = form.oldpasswd.value;
 	var newpasswd = form.newpasswd.value;
 
 	var xhr = new XMLHttpRequest();
 	xhr.timeout = 4000;
 	xhr.open('POST', '/change_passwd');
+	//On indique que l'on envoie des données de formulaire
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	//On paramètre les données à envoyer
  	xhr.send('oldpasswd=' + oldpasswd + '&newpasswd=' + newpasswd);
 
  	xhr.addEventListener('readystatechange', function() {
@@ -33,8 +41,10 @@ function ChangePasswd(form)
 	return false;
 }
 
+//Fonction de vérification validité champs newpasswd : vérifie s'ils sont identiques lorsquil sont changés
 function samePasswdCheck(form)
 {
+	//On recupere les donnés du formulaire (form)
 	var fisrt_input = form.newpasswd;
 	var confirm_input = form.cnfpasswd;
 
@@ -46,6 +56,7 @@ function samePasswdCheck(form)
 	}
 }
 
+//Rapport de bug
 function ReportBug(form)
 {
 	var bugmail = form.bugmail.value;
@@ -80,9 +91,10 @@ function ReportBug(form)
 	return false;
 }
 
-
+//change le nom
 function ChangeName(form)
 {
+	//On recupere les donnés du formulaire (form)
 	var username = form.username.value;
 
 	var xhr = new XMLHttpRequest();
@@ -112,8 +124,10 @@ function ChangeName(form)
 	return false;
 }
 
+//change la position (utilisée par meteo)
 function ChangeLoc(form)
 {
+	//On recupere les donnés du formulaire (form)
 	var lon = form.longitude.value;
 	var lat = form.latitude.value;
 
@@ -142,13 +156,20 @@ function ChangeLoc(form)
 	return false;
 }
 
+
+//On geolocalise l'utilisateur pour l'aider a remplir les champs localisation
 function tryLocalisation(el)
 {
+	//Si disponible
 	if("geolocation" in navigator)
 	{
+		//Si les champs sont vides
 		if(el.parentNode.latitude.value == "" && el.parentNode.longitude.value == ""){
+			//On localise
 			navigator.geolocation.getCurrentPosition(position => {
+				//On reverifie que les champs sont vides
 			  	if(el.parentNode.latitude.value == "" && el.parentNode.longitude.value == ""){
+			  		//On rempli les champs
 				  	el.parentNode.latitude.value = position.coords.latitude;
 				  	el.parentNode.longitude.value = position.coords.longitude;
 				}

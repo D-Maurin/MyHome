@@ -1,3 +1,10 @@
+/*###############################################################
+templates.js - templates html utilisés en js inseres dans la page
+###############################################################*/
+
+// --- les triples crochets {{{}}} sont remplacés dynamiquement en js ---
+
+
 const TEMPLATE_ROOM = `
 <div class="PH_room" id="PH_room_{{{GID}}}" GID="{{{GID}}}" edit_mode="false">
 	<input class="PH_history_bt" id="ck_{{{GID}}}" type="checkbox" style="display:none"

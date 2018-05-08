@@ -1,3 +1,7 @@
+/*##########################################################
+weather.js - recupere les informations de météo et l'affiche
+##########################################################*/
+
 function loadWeather()
 {
 	var xhr = new XMLHttpRequest();

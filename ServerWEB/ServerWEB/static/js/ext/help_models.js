@@ -34,6 +34,11 @@ CHAIN_HELP_CREATE = () => Object({
 			() => (!Array.from($alldiv("input[rid]")).every( (el) => el.checked==false))
 		],
 		[
+			"Selectionnez le ou les fenêtre(s) de cette pièce", $div("#PH_room_0 .Edit_window_module"), true,
+			() => help_wait_next("C'est fait"),
+			nocondition
+		],
+		[
 			"Appuyez sur créer et c'est fini !", $div("#PH_room_0 .Edit_room_validate"), false,
 			() => new Promise((resolve, reject) => {
 				$div("#PH_room_0 .Edit_room_validate").addEventListener("click", () => resolve(true))

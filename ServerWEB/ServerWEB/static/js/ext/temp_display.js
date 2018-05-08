@@ -1,3 +1,8 @@
+/*####################################################################
+temp_display.js - Gère l'affichage des temperatures et de leur couleur
+####################################################################*/
+
+//Fonction qui change la temperature et la couleur associée
 function ChangeTemperature(ct, temp)
 {
 	ct.innerHTML = temp;
@@ -5,6 +10,7 @@ function ChangeTemperature(ct, temp)
 											'),rgb(' + colorOf(temp) + ') 70%)';
 }
 
+//Calcul la couleur pour le degrade d'une temperature
 function colorOf(value)
 {
 	var red = [255, 0, 0];
