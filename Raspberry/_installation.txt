@@ -1,0 +1,11 @@
+--- Linux ---
+
+mysql-server : Ver 15.1 Distrib 10.1.23-MariaDB, for debian-linux-gnueabihf (armv7l)
+apache2 : Apache/2.4.25 (Raspbian)
+python3 : Python 3.5.3
+libapache2-mod-wsgi-py3
+
+--- Python ---
+
+flask
+mysql-connector-python-8.0.11

@@ -1,144 +1,75 @@
 from flask import *
 import hashlib
 import json
-import time
-import urllib.request
 
 # App creation
 app = Flask(__name__)
 app.secret_key = "APBGLMYUIERXBAWCSXBNKJ"
 
+# Import DB pool (faster db connexion getter)
 from .ServerWEB_DB import cnxpool
 
 # API Import
 from .ServerWEB_API import app_API
 app.register_blueprint(app_API)
 
+from .ServerWEB_API_Settings import app_API_Settings
+app.register_blueprint(app_API_Settings)
+
 # Home route
 from .ServerWEB_Security import protect
-from .ServerWEB_Mail import mail_report_bug
 
 @app.route('/')
 @protect
 def home():
+    #get db cursor
     cnx = cnxpool.get_connection()
     cursor = cnx.cursor()
+    #get name
     req = 'SELECT S_VALUE FROM Settings WHERE S_KEY="Name"'
     cursor.execute(req)
-    name = cursor.fetchall()[0][0]        
+    name = cursor.fetchall()[0][0]  
+    #close connection      
     cursor.close()
     cnx.close()
+    #return home page (with name)
     return render_template("home.html", name=name)
 
 
 @app.route("/RemoteAccess", methods=["POST","GET"])
 def login():
+    #If submit passwd to connect
     if request.method == "POST" and 'passwd' in request.form:
         cnx = cnxpool.get_connection()
         cursor = cnx.cursor()
         
+        #hashing passwd
         hash_passwd = hashlib.sha1(bytes(request.form['passwd'], 'utf-8')).hexdigest()
+        #checking if passwd is ok
         req = 'SELECT IF(S_VALUE=%s, TRUE, FALSE) FROM Settings WHERE S_KEY="Password"'
         
         cursor.execute(req, (hash_passwd,))
         result = cursor.fetchall()[0][0]
         
+        #if password ok
         if result == 1:
+            #declare connected and redirect to home
             session["connected"] = True
             return redirect(url_for("home"))
         else:
+            # (bad passwd) return login page
             return render_template("connect.html")
         
         cursor.close()
         cnx.close()
-        
+    # If already connected
     elif "connected" in session and session["connected"]:
+        #redirect to home
         return redirect(url_for("home"))
+    # Else (method is get or form invalid and not connected)
     else:
+        #return login page
         return render_template("connect.html")
-
-@app.route("/change_passwd", methods=["POST"])
-def changePasswd():
-    if 'oldpasswd' in request.form and 'newpasswd' in request.form:
-        cnx = cnxpool.get_connection()
-        cursor = cnx.cursor()
-        
-        hash_passwd = hashlib.sha1(bytes(request.form['oldpasswd'], 'utf-8')).hexdigest()
-        req = 'SELECT IF(S_VALUE=%s, TRUE, FALSE) FROM Settings WHERE S_KEY="Password"'
-        
-        cursor.execute(req, (hash_passwd,))
-        result = cursor.fetchall()[0][0]
-        
-        if result == 1:
-            hash_newpasswd = hashlib.sha1(bytes(request.form['newpasswd'], 'utf-8')).hexdigest()
-            changereq = 'UPDATE Settings SET S_VALUE=%s WHERE S_KEY="Password"'
-            cursor.execute(changereq, (hash_newpasswd,))
-            cursor.close()
-            cnx.close()
-            return "OK"
-        else:
-            cursor.close()
-            cnx.close()
-            return "BAD_PASSWORD"
-            
-    return "BAD_FORM"
-
-@app.route("/report_bug", methods=["POST"])
-def reportBug():
-    if 'bugmail' in request.form and 'bugdesc' in request.form:
-        mail_report_bug(request.form['bugmail'], request.form['bugdesc'])
-        return "OK"
-    return "BAD_FORM"
-
-weather_buffer = {}
-weather_buffer_time = 0
-weather_buffer_localisation = ""
-weather_buffer_key = "44ea71019ddd74a3abaf0baed85c8ef1"
-@app.route("/weather")
-def weather():
-    global weather_buffer
-    global weather_buffer_localisation
-    global weather_buffer_time
-    
-    if weather_buffer_localisation == "":
-        cnx = cnxpool.get_connection()
-        cursor = cnx.cursor()
-        cursor.execute('SELECT S_VALUE FROM Settings WHERE S_KEY="Localisation"')
-        weather_buffer_localisation=cursor.fetchall()[0][0]
-        cursor.close()
-        cnx.close()
-    
-    if time.time() - weather_buffer_time > 10:
-        weather_buffer_time = time.time()
-        with urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?' + weather_buffer_localisation + '&units=metric&appid=' + weather_buffer_key) as response:
-            weather_buffer = json.loads(response.read().decode())
-    
-    return jsonify(weather_buffer)
-
-@protect
-@app.route("/update_info", methods=["POST"])
-def updateInfo():
-    if "username" in request.form:
-        cnx = cnxpool.get_connection()
-        cursor = cnx.cursor()
-        changereq = 'UPDATE Settings SET S_VALUE=%s WHERE S_KEY="Name"'
-        cursor.execute(changereq, (request.form["username"],))
-        cursor.close()
-        cnx.close()
-        return "OK"
-    elif "lat" in request.form and "lon" in request.form:
-        global weather_buffer_localisation
-        weather_buffer_localisation = ""
-        
-        loc = "lat=" + request.form["lat"] + "&lon=" + request.form["lon"]
-        cnx = cnxpool.get_connection()
-        cursor = cnx.cursor()
-        changereq = 'UPDATE Settings SET S_VALUE=%s WHERE S_KEY="Localisation"'
-        cursor.execute(changereq, (loc,))
-        cursor.close()
-        cnx.close()
-        return "OK"
-    return "BAD_FORM"
 
 # Run App
 if __name__ == "__main__":

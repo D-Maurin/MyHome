@@ -7,17 +7,23 @@ from .ServerWEB_Security import protect
 app_API = Blueprint("app_API", __name__)
 
 
-# API routes
+# API routes (all protected (403 if user not connected)
+
 @app_API.route("/get_<string:cmd>")
 @protect
 def get_simply(cmd):
+    #get db cursor
     cnx = cnxpool.get_connection()
     cursor = cnx.cursor()
+    # call procedure passed in parameter
     cursor.callproc("get_" + cmd)
     for i in cursor.stored_results():
+        #get result
         result = i.fetchall()
+    #close connection
     cursor.close()
     cnx.close()
+    #returning result (json format)
     return jsonify(result)
 
 @app_API.route("/get_<string:cmd>/<int:gid>")

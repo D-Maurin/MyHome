@@ -1,7 +1,6 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from threading import Thread
 
 ADDR_ADMIN = ['maurin.denis.m@gmail.com']
 
@@ -16,10 +15,6 @@ ADMIN_MAIL = '''
 <h3>Un utilisateur a rapporté un bug : </h3>
 <p>{}</p>
 '''
-
-def threaded_mail_report_bug(addr, text):
-    th = Thread(target=mail_report_bug, args=(addr, text))
-    th.start()
 
 def mail_report_bug(addr, text):
     #Server Config
