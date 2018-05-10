@@ -11,7 +11,7 @@ BEGIN
     SELECT 
         Sensors.Value,
         Rooms.TempTarget, 
-        (SELECT COUNT(*) FROM WindowsLinks INNER JOIN Windows ON Windows.WID = WindowsLinks.WID WHERE GID=Rooms.GID AND Windows.State=1 AND TIMESTAMPDIFF(MINUTE, Windows.LastUpdate, NOW()) < 10) AS WOPEN
+        (SELECT COUNT(*) FROM WindowsLinks INNER JOIN Windows ON Windows.WID = WindowsLinks.WID WHERE GID=Rooms.GID AND Windows.State=0 AND TIMESTAMPDIFF(MINUTE, Windows.LastUpdate, NOW()) < 10) AS WOPEN
     FROM RegulatorsLinks 
     RIGHT JOIN Regulators
         ON RegulatorsLinks.RID = Regulators.RID

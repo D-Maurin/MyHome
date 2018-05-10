@@ -7,7 +7,7 @@ from .ServerWEB_Security import protect
 app_API = Blueprint("app_API", __name__)
 
 
-# API routes (all protected (403 if user not connected)
+# API routes (all protected (403 if user not connected))
 
 @app_API.route("/get_<string:cmd>")
 @protect
@@ -85,5 +85,18 @@ def del_module(module, id):
     cursor.close()
     cnx.close()
     return "OK"
-    
-    
+
+@app_API.route("/planify_update_change", methods=["POST"])
+def planify_add_change():
+    pass
+    return "OK"
+
+@app_API.route("/planify_set_state/<int:gid>/<int:state>")
+def planify_set_state(gid, state):
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
+    cursor.callproc("planify_set_state", (gid,state))
+    cursor.close()
+    cnx.close()
+    return "OK"
+
