@@ -51,6 +51,7 @@ ONLOADTASK.push(() => {
 	Home_Message.add("Gardez un oeil sur la température de votre maison", "où que vous soyez !", false, true)
 ;})
 ONLOADTASK.push(StartIntervals);
+ONLOADTASK.push(LoadPlanifyRoomsInfos);
 ONLOADTASK.push(LoadSensorsAndRegulatorsAndWindowsInfos);
 ONLOADTASK.push(loadWeather);
 //On ajoute des taches a executer au changement de page (de hash)

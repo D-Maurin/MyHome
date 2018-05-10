@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="/static/css/home_page_edit.css" media="not print">
 		<link rel="stylesheet" href="/static/css/info_page.css" media="not print">
 		<link rel="stylesheet" href="/static/css/setting_page.css" media="not print">
+		<link rel="stylesheet" href="/static/css/planify_page.css" media="not print">
 
 		<link rel="stylesheet" href="/static/css/print.css" media="print">
 		
@@ -35,6 +36,7 @@
 		<script src="/static/js/module_sensor/info.js"></script>
 		<script src="/static/js/module_sensor/edit.js"></script>
 		<script src="/static/js/module_history/history.js"></script>
+		<script src="/static/js/module_planify/planify.js"></script>
 
 		<script src="/static/js/module_window/info.js"></script>
 		<script src="/static/js/module_window/edit.js"></script>
@@ -60,7 +62,8 @@
 	
 		<header>
 			<a class="menu_button" id="mb_1" href="#Home" draggable="false" ondragstart="return false"></a>
-			<a class="menu_button" id="mb_2" href="#Planify" draggable="false" ondragstart="return false"></a>
+			<a class="menu_button" id="mb_2" href="#Planify" draggable="false" ondragstart="return false"
+				onclick="LoadPlanifyRoomsInfos()"></a>
 			<a class="menu_button" id="mb_3" href="#Settings" draggable="false" ondragstart="return false"></a>
 			<a class="menu_button" id="mb_4" href="#Infos" draggable="false" ondragstart="return false"
 				onclick="LoadSensorsAndRegulatorsAndWindowsInfos()"></a>
@@ -106,7 +109,40 @@
 				<img src="/static/img/planify_normal.svg"/>
 				<div>Planification</div>
 			</div>
-			<div class="page" id="Page_Planify">
+			<div class="page" id="Page_Planify" loading="false">
+				<div id="PP_CentralTable">
+					<table>
+						<tr>
+							<td>Heure</td>
+							<td>Avant 6h</td>
+							{% for i in range(6, 23) %}
+							<td>{{ i }}:00</td>
+							{% endfor %}
+							<td>Après 23h</td>
+						</tr>
+						{% for day in ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"] %}
+						<tr>
+							<td>{{ day }}</td>
+							{% for i in range(19) %}
+							<td><input class="PP_Table_Input" type="number" required></td>
+							{% endfor %}
+						</tr>
+						{% endfor %}
+					</table>
+				</div>			
+			
+				<div id="PP_Buttons">
+					<div id="PP_OnOffButton">
+						<label for="PP_OnOffCheck">Activez ou Désactivez la programmation :&nbsp;</label>
+						<input type="checkbox" id="PP_OnOffCheck" onclick="SavePlanifyState(this)">
+					</div>
+					<div id="PP_SaveButton">
+						<input type="button" value="Enregistrer" id="PP_InputSave" onclick="SavePlanifyChanges(this)">
+					</div>
+				</div>
+
+				<div id="PP_RoomSelectors">
+				</div>
 			</div>
 
 			<div class="PageDelimiterPrint">

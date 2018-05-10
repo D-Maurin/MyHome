@@ -177,3 +177,14 @@ const TEMPLATE_WINDOW_SELECT = `
 	</label>
 </div>
 `
+
+const TEMPLATE_ROOM_INPUT = `
+<input 
+	id="PP_RoomInput_{{{id}}}" 
+	type="button" 
+	value="{{{name}}}" 
+	gid="{{{id}}}"
+	progenable="{{{p_enable}}}"
+	onclick="SelectPlanifyRoom(this)" 
+	class="PP_Input{{{selected}}}">
+`

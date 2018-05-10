@@ -86,9 +86,17 @@ def del_module(module, id):
     cnx.close()
     return "OK"
 
-@app_API.route("/planify_update_change", methods=["POST"])
-def planify_add_change():
-    pass
+@app_API.route("/planify_update_change/<int:gid>", methods=["POST"])
+def planify_update_change(gid):
+    params = request.get_json()
+    cnx = cnxpool.get_connection()
+    cursor = cnx.cursor()
+    for toadd in params["toAdd"]:
+        cursor.callproc("planify_add_change", (gid,toadd[0], toadd[1], toadd[2]))
+    for topop in params["toPop"]:
+        cursor.callproc("planify_pop_change", (gid,topop[0], topop[1]))
+    cursor.close()
+    cnx.close()
     return "OK"
 
 @app_API.route("/planify_set_state/<int:gid>/<int:state>")
