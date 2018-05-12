@@ -22,4 +22,6 @@ BEGIN
     LEFT JOIN WindowsLinks
         ON Rooms.GID = WindowsLinks.GID
     WHERE Regulators.RID = p_RID;
+    
+    UPDATE Regulators SET LastUpdate=NOW() WHERE RID=p_RID;
 END

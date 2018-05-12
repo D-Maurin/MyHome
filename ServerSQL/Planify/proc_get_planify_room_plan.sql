@@ -5,5 +5,6 @@ CREATE OR REPLACE PROCEDURE `get_planify_room_plan`
 BEGIN 
     SELECT P_DAY, P_HOUR, P_TARGET
     FROM Planify
-    WHERE GID=p_GID;
+    WHERE GID=p_GID
+	ORDER BY P_HOUR;
 END
